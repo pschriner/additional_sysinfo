@@ -28,9 +28,8 @@ class SystemInformationController extends \TYPO3\CMS\Extbase\Mvc\Controller\Acti
 	 *
 	 * @return void
 	 */
-	public function appendMessage($formerMessagesArray = array())
+	public function appendMessage(SystemInformationToolbarItem $systemInformationToolbarItem)
     {
-        $messages = array('messages' => $formerMessagesArray);
         $availableUpdates = array();
         foreach ($GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update'] as $identifier => $className) {
             $updateObject = $this->getUpdateObjectInstance($className, $identifier);
@@ -40,22 +39,15 @@ class SystemInformationController extends \TYPO3\CMS\Extbase\Mvc\Controller\Acti
                 $availableUpdates[$identifier] = $updateObject->getTitle();
             }
         }
+        
         if (count($availableUpdates)) {
-            $messages['messages'][] = array (
-                'module' => 'system_InstallInstall',
-                'count' => count($availableUpdates),
-                'status' => InformationStatus::STATUS_WARNING,
-                'text' => implode("\n",$availableUpdates).'<a href="'.BackendUtility::getModuleUrl('system_InstallInstall').'">Install Tool</a>'
-            );
-        } else {
-            $messages['messages'][] = array (
-                'module' => 'system_InstallInstall',
-                'count' => count($availableUpdates),
-                'status' => InformationStatus::STATUS_OK,
-                'text' => 'No missing updates'
+            $systemInformationToolbarItem->addSystemMessage(
+                'text' => implode("\n",$availableUpdates).'<a href="'.BackendUtility::getModuleUrl('system_InstallInstall').'">Install Tool</a>',
+                InformationStatus::STATUS_WARNING,
+                count($availableUpdates),
+                'system_InstallInstall'
             );
         }
-        return $messages;
     }
     
     /**
