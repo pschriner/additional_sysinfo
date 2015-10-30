@@ -21,8 +21,8 @@ use TYPO3\CMS\Backend\Utility\BackendUtility;
 /**
  * Count newest exceptions for the system information menu
  */
-class SystemInformationController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
-
+class SystemInformationController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
+{
     /**
      * Modifies the SystemInformation array
      *
@@ -43,7 +43,7 @@ class SystemInformationController extends \TYPO3\CMS\Extbase\Mvc\Controller\Acti
         
         if (count($availableUpdates)) {
             $systemInformationToolbarItem->addSystemMessage(
-                implode("\n",$availableUpdates).'<a href="'.BackendUtility::getModuleUrl('system_InstallInstall').'">Install Tool</a>',
+                implode("\n",$availableUpdates).' <a href="'.BackendUtility::getModuleUrl('system_InstallInstall').'">Install Tool</a>',
                 InformationStatus::STATUS_WARNING,
                 count($availableUpdates),
                 'system_InstallInstall'
