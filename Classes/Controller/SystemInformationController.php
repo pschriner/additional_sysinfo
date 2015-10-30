@@ -15,7 +15,7 @@ namespace DieMedialen\AdditionalSysinfo\Controller;
  */
 
 use TYPO3\CMS\Backend\Toolbar\Enumeration\InformationStatus;
-use TYPO3\CMS\Backend\Backend\ToolbarItems\SystemInformationToolbarItem;
+use TYPO3\CMS\Backend\Toolbar\SystemInformationToolbarItemInterface;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 
 /**
@@ -23,12 +23,13 @@ use TYPO3\CMS\Backend\Utility\BackendUtility;
  */
 class SystemInformationController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
 
-	/**
-	 * Modifies the SystemInformation array
-	 *
-	 * @return void
-	 */
-	public function appendMessage(SystemInformationToolbarItem $systemInformationToolbarItem)
+    /**
+     * Modifies the SystemInformation array
+     *
+     * @param SystemInformationToolbarItemInterface $systemToolbarItem
+     * @return void
+     */
+    public function appendMessage(SystemInformationToolbarItemInterface $systemInformationToolbarItem)
     {
         $availableUpdates = array();
         foreach ($GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update'] as $identifier => $className) {
@@ -51,16 +52,16 @@ class SystemInformationController extends \TYPO3\CMS\Extbase\Mvc\Controller\Acti
     }
     
     /**
-	 * Creates instance of an Update object
-	 *
-	 * @param string $className The class name
-	 * @param string $identifier The identifier of Update object - needed to fetch user input
-	 * @return AbstractUpdate Newly instantiated Update object
-	 */
-	protected function getUpdateObjectInstance($className, $identifier) {
-		//$userInput = $this->postValues['values'][$identifier];
+     * Creates instance of an Update object
+     *
+     * @param string $className The class name
+     * @param string $identifier The identifier of Update object - needed to fetch user input
+     * @return AbstractUpdate Newly instantiated Update object
+     */
+    protected function getUpdateObjectInstance($className, $identifier) {
+        //$userInput = $this->postValues['values'][$identifier];
         $userInput = NULL;
-		$versionAsInt = \TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger(TYPO3_version);
-		return \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance($className, $identifier, $versionAsInt, $userInput, $this);
-	}
+        $versionAsInt = \TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger(TYPO3_version);
+        return \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance($className, $identifier, $versionAsInt, $userInput, $this);
+    }
 }
