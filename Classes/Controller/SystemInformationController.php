@@ -45,7 +45,7 @@ class SystemInformationController extends \TYPO3\CMS\Extbase\Mvc\Controller\Acti
                 'module' => 'system_InstallInstall',
                 'count' => count($availableUpdates),
                 'status' => InformationStatus::STATUS_WARNING,
-                'text' => implode("\n",$availableUpdates).'<a href="'.BackendUtility::getModuleUrl('system_InstallInstall').'">Install Tool</a>'
+                'text' => implode("\n",$availableUpdates).' <a href="'.BackendUtility::getModuleUrl('system_InstallInstall').'">Install Tool</a>'
             );
         } else {
             $messages['messages'][] = array (
