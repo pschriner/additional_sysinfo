@@ -42,7 +42,7 @@ class SystemInformationController extends \TYPO3\CMS\Extbase\Mvc\Controller\Acti
         
         if (count($availableUpdates)) {
             $systemInformationToolbarItem->addSystemMessage(
-                'text' => implode("\n",$availableUpdates).'<a href="'.BackendUtility::getModuleUrl('system_InstallInstall').'">Install Tool</a>',
+                implode("\n",$availableUpdates).'<a href="'.BackendUtility::getModuleUrl('system_InstallInstall').'">Install Tool</a>',
                 InformationStatus::STATUS_WARNING,
                 count($availableUpdates),
                 'system_InstallInstall'
