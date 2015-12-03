@@ -40,7 +40,7 @@ class SystemInformationController extends \TYPO3\CMS\Extbase\Mvc\Controller\Acti
                 $availableUpdates[$identifier] = $updateObject->getTitle();
             }
         }
-        
+
         if (count($availableUpdates)) {
             $systemInformationDisplay->addSystemMessage(
                 implode("\n",$availableUpdates).' <a href="'.BackendUtility::getModuleUrl('system_InstallInstall').'">Install Tool</a>',
@@ -49,15 +49,8 @@ class SystemInformationController extends \TYPO3\CMS\Extbase\Mvc\Controller\Acti
                 'system_InstallInstall'
             );
         }
-        
-        $systemInformationDisplay->addSystemMessage(
-                implode("\n",$availableUpdates).' <a href="'.BackendUtility::getModuleUrl('system_InstallInstall').'">Install Tool</a>',
-                InformationStatus::STATUS_WARNING,
-                count($availableUpdates),
-                'system_InstallInstall'
-            );
     }
-    
+
     /**
      * Creates instance of an Update object
      *
