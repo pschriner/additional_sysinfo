@@ -1,4 +1,5 @@
-# additional_sysinfo
+Additional Sysinfo
+==================
 
 This a test case extension for extending the system information panel of TYPO3 7.
 
