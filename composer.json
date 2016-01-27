@@ -1,0 +1,24 @@
+{
+	"name": "diemedialen/additional-sysinfo",
+	"description": "Additonal system information",
+	"type": "typo3-cms-extension",
+	"license": "GPL-2.0+",
+	"authors": [
+		{
+			"name": "DieMedialen GmbH",
+			"role": "Developer",
+			"homepage": "http://www.diemedialen.de/"
+		}
+	],
+	"replace": {
+		"additional-sysinfo": "*"
+	},
+	"require": {
+		"typo3/cms-core": "7.6.2 - 7.6.99"
+	},
+	"autoload": {
+		"psr-4": {
+			"DieMedialen\\AdditionalSysinfo\\": "Classes/"
+		}
+	}
+}
